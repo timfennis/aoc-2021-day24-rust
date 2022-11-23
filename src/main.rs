@@ -38,14 +38,12 @@ fn main() {
 
 fn solve_block(w: i64, z: i64, div: i64, offset_1: i64, offset_2: i64) -> i64 {
     let x = z % 26 + offset_1;
-    let z = z / div;
-    let x = if x != w { 1 } else { 0 };
-    let y = 25 * x + 1;
-    let z = z * y;
-    let y = (w + offset_2) * x;
-    let z = z + y;
-
-    return z;
+        
+    return if x == w {
+        (z / div) * 1 + 0
+    } else {
+        (z / div) * 26 + w + offset_2
+    }
 }
 
 fn solve(input: &str) -> i64 {
