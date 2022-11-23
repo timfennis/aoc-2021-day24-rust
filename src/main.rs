@@ -36,13 +36,21 @@ fn main() {
     }
 }
 
-fn solve_block(w: i64, z: i64, div: i64, offset_1: i64, offset_2: i64) -> i64 {
-    let x = z % 26 + offset_1;
+fn solve_block(input: i64, stack: i64, div: i64, offset_1: i64, offset_2: i64) -> i64 {
+    let peek = stack % 26 + offset_1;
         
-    return if x == w {
-        z / div  
+    return if peek == input {
+        // if (div == 1) 
+        //     stack
+        // if (div == 26)
+        //     stack / 26
+        stack / div  
     } else {
-        (z / div) * 26 + w + offset_2
+        // if (div == 1)
+        //     stack * 26 + (input + offset_2)
+        // if (div == 26) 
+        //     stack + (input + offset_2)
+        (stack / div) * 26 + input + offset_2
     }
 }
 
