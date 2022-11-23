@@ -36,18 +36,7 @@ fn main() {
     }
 }
 
-fn solve(input: &str) -> i64 {
-    let mut input: Vec<i64> = input
-        .chars()
-        .map(|c| c.to_digit(10).unwrap() as i64)
-        .rev()
-        .collect();
-
-    let x = 0;
-    let y = 0;
-    let z = 0;
-
-    let w = input.pop().unwrap();
+fn solve_block_1(w: i64, z: i64) -> i64 {
     let x = 0;
     let x = x + z;
     let x = x % 26;
@@ -66,6 +55,20 @@ fn solve(input: &str) -> i64 {
     let y = y * x;
     let z = z + y;
 
+    return z;
+}
+
+fn solve(input: &str) -> i64 {
+    let mut input: Vec<i64> = input
+        .chars()
+        .map(|c| c.to_digit(10).unwrap() as i64)
+        .rev()
+        .collect();
+
+    // Block 1
+    let z = solve_block_1(input.pop().unwrap(), 0);
+
+    // Block 2
     let w = input.pop().unwrap();
     let x = 0;
     let x = x + z;
