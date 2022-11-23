@@ -40,15 +40,9 @@ fn solve_block(w: i64, z: i64, div: i64, offset_1: i64, offset_2: i64) -> i64 {
     let x = z % 26 + offset_1;
     let z = z / div;
     let x = if x != w { 1 } else { 0 };
-    let y = 0;
-    let y = y + 25;
-    let y = y * x;
-    let y = y + 1;
+    let y = 25 * x + 1;
     let z = z * y;
-    let y = 0;
-    let y = y + w;
-    let y = y + offset_2;
-    let y = y * x;
+    let y = (w + offset_2) * x;
     let z = z + y;
 
     return z;
@@ -62,7 +56,6 @@ fn solve(input: &str) -> i64 {
         .collect();
 
     let z = solve_block(input.pop().unwrap(), 0, 1, 13, 14);
-    let z = solve_block(input.pop().unwrap(), z, 1, 25, 8);
     let z = solve_block(input.pop().unwrap(), z, 1, 12, 8);
     let z = solve_block(input.pop().unwrap(), z, 1, 11, 5);
     let z = solve_block(input.pop().unwrap(), z, 26, 0, 4);
@@ -78,4 +71,13 @@ fn solve(input: &str) -> i64 {
     let z = solve_block(input.pop().unwrap(), z, 26, -14, 3);
 
     return z;
+}
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn it_works() {
+        let result = crate::solve("93499629698999");
+        assert_eq!(result, 0);
+    }
 }
